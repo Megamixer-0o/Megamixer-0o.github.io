@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root {
@@ -26,16 +26,36 @@
   --green: #00E676; --coral: #FF6B6B;
   --grad: linear-gradient(135deg, #6C5CE7, #00D2FF);
   --grad-full: linear-gradient(135deg, #6C5CE7, #00D2FF, #FFD93D);
-  --font: 'EB Garamond', 'Garamond', serif;
-  --font-display: 'EB Garamond', serif;
+  --font: 'DM Sans', 'Inter', sans-serif;
+  --font-display: 'DM Serif Display', 'Georgia', serif;
   --font-mono: 'JetBrains Mono', monospace;
   --r-sm: 8px; --r-md: 14px; --r-lg: 22px; --r-xl: 32px; --r-full: 9999px;
   --mw: 1280px; --t-fast: 0.2s cubic-bezier(.4,0,.2,1);
   --t-med: 0.4s cubic-bezier(.4,0,.2,1); --t-slow: 0.7s cubic-bezier(.4,0,.2,1);
 }
+
+/* ── Light mode ── */
+[data-theme="light"] {
+  --bg: #FAF8F5; --bg2: #F0EDE8;
+  --glass: rgba(0,0,0,0.025); --glass-hover: rgba(0,0,0,0.05);
+  --border: rgba(0,0,0,0.08); --border-glow: rgba(0,0,0,0.12);
+  --text: #1A1A2E; --text2: #2D2D44;
+  --muted: #6B7280; --dim: #9CA3AF;
+  --violet: #5B4CC4; --violet-g: rgba(91,76,196,0.3);
+  --cyan: #0088B4; --cyan-g: rgba(0,136,180,0.25);
+  --gold: #B8860B; --gold-g: rgba(184,134,11,0.25);
+  --green: #059669; --coral: #DC2626;
+  --grad: linear-gradient(135deg, #5B4CC4, #0088B4);
+  --grad-full: linear-gradient(135deg, #5B4CC4, #0088B4, #B8860B);
+}
+[data-theme="light"] .hero-grid-overlay{opacity:.06}
+[data-theme="light"] .nav.scrolled{background:rgba(250,248,245,.88)}
+[data-theme="light"] .nav-links{background:rgba(250,248,245,.97)!important}
+[data-theme="light"] .btn-primary{color:#fff}
+[data-theme="light"] .cursor{mix-blend-mode:normal;border-color:var(--violet)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:auto;scrollbar-width:thin;scrollbar-color:var(--dim) transparent}
-body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none;transition:background .5s ease,color .5s ease}
 ::selection{background:var(--violet-g);color:var(--text)}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--dim);border-radius:var(--r-full)}
 a,button,input,textarea{cursor:none}
@@ -84,6 +104,15 @@ a,button,input,textarea{cursor:none}
 .nav-hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .nav-hamburger.active span:nth-child(2){opacity:0}
 .nav-hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* ── Theme toggle ── */
+.theme-toggle{background:none;border:1px solid var(--border);border-radius:var(--r-full);width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem;cursor:none;transition:all var(--t-med);position:relative;overflow:hidden;margin-right:.5rem}
+.theme-toggle:hover{border-color:var(--gold);color:var(--gold)}
+.theme-toggle i{position:absolute;transition:all var(--t-med)}
+.theme-toggle .fa-sun{opacity:1;transform:translateY(0) rotate(0)}
+.theme-toggle .fa-moon{opacity:0;transform:translateY(20px) rotate(90deg)}
+[data-theme="light"] .theme-toggle .fa-sun{opacity:0;transform:translateY(-20px) rotate(-90deg)}
+[data-theme="light"] .theme-toggle .fa-moon{opacity:1;transform:translateY(0) rotate(0)}
 
 /* ── Sections ── */
 .section{position:relative;padding:6rem 1.5rem;z-index:2}
@@ -284,6 +313,7 @@ a,button,input,textarea{cursor:none}
 @media(max-width:480px){
   .nav{padding:.6rem .8rem}
   .nav-logo{font-size:1.1rem}
+  .theme-toggle{width:32px;height:32px;font-size:.75rem;margin-right:.2rem}
   .nav-links{width:85%;padding:4.5rem 1.5rem 1.5rem}
   .hero{padding:4rem .8rem 2rem}
   .hero-title{font-size:clamp(1.8rem,8vw,2.4rem);letter-spacing:-1px}
@@ -333,6 +363,9 @@ a,button,input,textarea{cursor:none}
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#hero" class="nav-logo">SK<span class="dot"></span></a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <i class="fas fa-sun"></i><i class="fas fa-moon"></i>
+    </button>
     <div class="nav-links" id="navLinks">
       <a href="#about" class="nav-link">About</a>
       <a href="#education" class="nav-link">Education</a>
@@ -674,13 +707,29 @@ a,button,input,textarea{cursor:none}
   window.addEventListener('load',()=>setTimeout(()=>loader.classList.add('hidden'),1200));
 })();
 
+/* ═══════════ THEME TOGGLE ═══════════ */
+(function(){
+  const toggle=document.getElementById('themeToggle');
+  if(!toggle)return;
+  // Load saved preference or default to dark
+  const saved=localStorage.getItem('theme');
+  if(saved==='light')document.documentElement.setAttribute('data-theme','light');
+  toggle.addEventListener('click',()=>{
+    const current=document.documentElement.getAttribute('data-theme');
+    const next=current==='light'?'':'light';
+    if(next)document.documentElement.setAttribute('data-theme',next);
+    else document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('theme',next||'dark');
+  });
+})();
+
 /* ═══════════ CUSTOM CURSOR ═══════════ */
 (function(){
   const c=document.getElementById('cursor'),d=document.getElementById('cursorDot');
   if(!c||!d)return;
   let mx=0,my=0,cx=0,cy=0;
   document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;d.style.left=mx+'px';d.style.top=my+'px'});
-  document.querySelectorAll('a,button,input,textarea,.glass-card,.project-card,.exp-card,.hero-social,.contact-item,.btn-primary,.btn-outline,.nav-cta').forEach(el=>{
+  document.querySelectorAll('a,button,input,textarea,.glass-card,.project-card,.exp-card,.hero-social,.contact-item,.btn-primary,.btn-outline,.nav-cta,.theme-toggle').forEach(el=>{
     el.addEventListener('mouseenter',()=>c.classList.add('hover'));
     el.addEventListener('mouseleave',()=>c.classList.remove('hover'));
   });
