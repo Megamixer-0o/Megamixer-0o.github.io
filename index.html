@@ -995,14 +995,30 @@ function handleForm(e){
   window.addEventListener('scroll',()=>{
     scrollT=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight);
   });
-  function anim(){
+  /* Glass morphism 3D shapes */
+  const glassShapes=[];
+  const glassGeos=[new THREE.IcosahedronGeometry(6,1),new THREE.TorusKnotGeometry(4,1.2,80,16),new THREE.OctahedronGeometry(5,0),new THREE.TorusGeometry(5.5,1.5,16,40),new THREE.DodecahedronGeometry(4.5,0)];
+  const glassClrs=['#6C5CE7','#00D2FF','#FFD93D','#6C5CE7','#00D2FF'];
+  for(let i=0;i<glassGeos.length;i++){
+    const wm=new THREE.MeshBasicMaterial({color:glassClrs[i],wireframe:true,transparent:true,opacity:.05,depthWrite:false});
+    const gm=new THREE.MeshPhysicalMaterial({color:glassClrs[i],transparent:true,opacity:.03,roughness:.7,depthWrite:false});
+    const g=new THREE.Group();g.add(new THREE.Mesh(glassGeos[i],wm));g.add(new THREE.Mesh(glassGeos[i],gm));
+    g.position.set((Math.random()-.5)*50,(Math.random()-.5)*30,-8-Math.random()*20);
+    g.userData={rx:(Math.random()-.5)*.004,ry:(Math.random()-.5)*.005,rz:(Math.random()-.5)*.003,fa:.5+Math.random()*1.5,fs:.3+Math.random()*.5,fo:Math.random()*Math.PI*2};
+    scene.add(g);glassShapes.push(g);
+  }
+  let mx=0,my=0,tmx=0,tmy=0;
+  document.addEventListener('mousemove',e=>{tmx=(e.clientX/window.innerWidth-.5)*2;tmy=(e.clientY/window.innerHeight-.5)*2});
+  function anim(ts){
     requestAnimationFrame(anim);
     galaxy.rotation.z+=.00012;
     galaxy.rotation.x=.5+scrollT*.35;
     stars.rotation.y+=.00004;
     stars.rotation.x+=.00002;
+    mx+=(tmx-mx)*.03;my+=(tmy-my)*.03;
+    glassShapes.forEach((g,i)=>{const u=g.userData;g.rotation.x+=u.rx;g.rotation.y+=u.ry;g.rotation.z+=u.rz;g.position.y+=Math.sin(ts*.001*u.fs+u.fo)*.003;g.position.x+=(mx*u.fa-g.position.x)*.005;g.position.y+=(my*u.fa*.5)*.003});
     renderer.render(scene,cam);
-  }anim();
+  }anim(0);
 
   window.addEventListener('resize',()=>{
     cam.aspect=window.innerWidth/window.innerHeight;
