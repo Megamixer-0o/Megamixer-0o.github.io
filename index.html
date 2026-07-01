@@ -16,9 +16,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root {
-  --bg: #050914; --bg2: #080d1a; --bg-elevated: #111827; --glass: rgba(255,255,255,0.025);
-  --glass-hover: rgba(255,255,255,0.05); --border: rgba(255,255,255,0.06);
-  --border-glow: rgba(255,255,255,0.1); --text: #E8ECF1; --text2: #C8CDD6;
+  --bg: #08090c; --bg2: #0f1116; --bg-elevated: #14171d; --glass: rgba(255,255,255,0.06);
+  --glass-hover: rgba(255,255,255,0.08); --border: rgba(255,255,255,0.1);
+  --border-glow: rgba(255,255,255,0.14); --text: #EEF0F4; --text2: #C4CAD4;
   --muted: #8B95A5; --dim: #6B7484;
   --violet: #6C5CE7; --violet-g: rgba(108,92,231,0.35);
   --cyan: #00D2FF; --cyan-g: rgba(0,210,255,0.3);
@@ -355,8 +355,13 @@ a,button,input,textarea{cursor:none}
   .hero-badge{animation:none!important}
 }
 
+
+/* ── Grain overlay ── */
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 </style></head>
 <body>
+
+<div class="grain"></div>
 
 <!-- Floating orbs -->
 <div class="float-orb"></div><div class="float-orb"></div><div class="float-orb"></div>

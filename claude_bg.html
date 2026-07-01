@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanjaykrishna.B.S &mdash; Signal Processing &middot; Finance &middot; Engineering</title>
+<meta name="description" content="Portfolio of Sanjaykrishna.B.S — BTech ECE at VIT Chennai. Signal processing engineer, finance enthusiast, builder.">
+<link rel="preload" href="fonts/space-grotesk-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="grain"></div>
+
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<div class="hover-popup" aria-hidden="true">
+  <span class="popup-stat"></span>
+  <h4 class="popup-title"></h4>
+  <p class="popup-desc"></p>
+  <div class="popup-techs"></div>
+</div>
+
+<header class="site-header">
+  <a href="#top" class="logo">SANJAY<span>.BS</span></a>
+  <nav class="main-nav">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#finance">Finance</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact" class="nav-cta magnetic-btn" data-cursor="purple">Hire Me</a>
+  </nav>
+  <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow reveal">Portfolio &middot; VIT Chennai</p>
+      <h1 class="hero-title">
+        <span class="hero-greet">Hi, I'm</span>
+        <span id="typed-name" class="hero-name">Sanjaykrishna B.S</span><span class="type-cursor" aria-hidden="true"></span>
+      </h1>
+      <div class="focus-chips reveal">
+        <span class="focus-chip" data-cursor="emerald">Signal Processing</span>
+        <span class="focus-chip" data-cursor="purple">Embedded Systems</span>
+        <span class="focus-chip" data-cursor="purple">Python</span>
+        <span class="focus-chip" data-cursor="cyan">Finance &amp; Markets</span>
+      </div>
+      <p class="hero-sub reveal">&ldquo;Where signal processing meets market strategy &mdash;
+        filtering the noise to find the pattern that matters.&rdquo;</p>
+      <div class="hero-cta reveal">
+        <a href="#projects" class="btn btn-primary magnetic-btn" data-cursor="purple">View My Work</a>
+        <a href="assets/SanjaykrishnaResume.pdf" class="btn btn-ghost" download data-cursor="cyan">Download Resume &darr;</a>
+      </div>
+      <div class="hero-socials reveal">
+        <a href="https://github.com/Megamixer-0o" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/sanjaykrishna-bs-b5a8a4321/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:sanjaykrishna.bs30@gmail.com">Email</a>
+      </div>
+    </div>
+    <div class="scroll-hint reveal">
+      <span></span>
+      Scroll
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <p class="eyebrow reveal">About me</p>
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title reveal">Engineer, builder, market analyst.</h2>
+        <p class="about-meta reveal">24BEC1278 &middot; VIT Chennai &middot; Chennai, India</p>
+      </div>
+      <div class="about-copy">
+        <p class="reveal">I'm an Electronics &amp; Communication Engineering undergraduate
+          at VIT Chennai, currently interning as a Network Engineer at Bharti Airtel. I
+          operate at the intersection of hardware architecture, software systems, and
+          financial markets &mdash; applying signal processing discipline to everything
+          I build.</p>
+        <p class="reveal">Markets are just signals with noise. Circuits are logic made
+          physical. I find the same patterns in both, and I build tools &mdash; from
+          stock screeners to embedded systems &mdash; that extract signal from noise.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="experience">
+    <p class="eyebrow reveal">Experience</p>
+    <h2 class="section-title reveal">Where I've shipped.</h2>
+    <ol class="timeline">
+      <li class="timeline-item reveal">
+        <span class="timeline-dot"></span>
+        <div class="timeline-body glass-card">
+          <div class="timeline-head">
+            <h3>Network Engineer Intern</h3>
+            <span class="timeline-date">2025</span>
+          </div>
+          <p class="timeline-org">Bharti Airtel</p>
+          <p>Hands-on telecom network operations &mdash; signal monitoring, infrastructure
+            diagnostics, and real-time troubleshooting across large-scale communication
+            systems handling millions of concurrent signals.</p>
+        </div>
+      </li>
+      <li class="timeline-item reveal">
+        <span class="timeline-dot"></span>
+        <div class="timeline-body glass-card">
+          <div class="timeline-head">
+            <h3>VP Membership &mdash; Club Leadership</h3>
+            <span class="timeline-date">2024 &ndash; Present</span>
+          </div>
+          <p class="timeline-org">Toastmasters International</p>
+          <p>Leading membership growth, organizing club events, and mentoring speakers
+            &mdash; building the public speaking and leadership skills that amplify
+            technical ability.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="skills" class="skills">
+    <p class="eyebrow reveal">Skills</p>
+    <h2 class="section-title reveal">Three spectrums, one discipline.</h2>
+    <p class="section-hint reveal">Hover a card for details.</p>
+    <div class="skills-grid popup-grid">
+      <article class="glass-card popup-card reveal" tabindex="0" data-cursor="emerald"
+        data-title="Signal Processing"
+        data-stat="Core ECE discipline"
+        data-desc="Communication theory, digital signal processing, and circuit simulation across MATLAB, Verilog, and LTspice."
+        data-tech="MATLAB, Verilog, LTspice">
+        <span class="card-icon"></span>
+        <h3>Signal Processing</h3>
+        <ul class="tag-list"><li>MATLAB</li><li>Verilog</li><li>LTspice</li></ul>
+        <p class="card-desc">Communication theory, digital signal processing, and circuit simulation across MATLAB, Verilog, and LTspice.</p>
+      </article>
+
+      <article class="glass-card popup-card reveal" tabindex="0" data-cursor="emerald"
+        data-title="Embedded Systems"
+        data-stat="Hardware-first builds"
+        data-desc="Microcontroller programming and IoT prototyping — Arduino, LabVIEW, and embedded C for real-world hardware."
+        data-tech="Arduino, Embedded C, IoT">
+        <span class="card-icon"></span>
+        <h3>Embedded Systems</h3>
+        <ul class="tag-list"><li>Arduino</li><li>Embedded C</li><li>IoT</li></ul>
+        <p class="card-desc">Microcontroller programming and IoT prototyping — Arduino, LabVIEW, and embedded C for real-world hardware.</p>
+      </article>
+
+      <article class="glass-card popup-card reveal" tabindex="0" data-cursor="purple"
+        data-title="Software Development"
+        data-stat="End-to-end tooling"
+        data-desc="Python for automation, data analysis, and tooling — plus Git, SQL, and system design for things that work end-to-end."
+        data-tech="Python, Git, SQL">
+        <span class="card-icon"></span>
+        <h3>Software Development</h3>
+        <ul class="tag-list"><li>Python</li><li>Git</li><li>SQL</li></ul>
+        <p class="card-desc">Python for automation, data analysis, and tooling — plus Git, SQL, and system design for things that work end-to-end.</p>
+      </article>
+
+      <article class="glass-card popup-card reveal" tabindex="0" data-cursor="purple"
+        data-title="Web Development"
+        data-stat="Full request lifecycle"
+        data-desc="HTML, CSS, and JavaScript for full-stack web work, from responsive front ends to the data layers behind them."
+        data-tech="HTML/CSS, JavaScript, Data Viz">
+        <span class="card-icon"></span>
+        <h3>Web Development</h3>
+        <ul class="tag-list"><li>HTML/CSS</li><li>JS</li><li>Data Viz</li></ul>
+        <p class="card-desc">HTML, CSS, and JavaScript for full-stack web work, from responsive front ends to the data layers behind them.</p>
+      </article>
+
+      <article class="glass-card popup-card reveal" tabindex="0" data-cursor="cyan"
+        data-title="Technical Analysis"
+        data-stat="500+ stocks screened"
+        data-desc="Python-powered screening pipelines computing moving averages, RSI, MACD, and Bollinger Bands across the market."
+        data-tech="Pandas, yfinance, RSI/MACD">
+        <span class="card-icon"></span>
+        <h3>Technical Analysis</h3>
+        <ul class="tag-list"><li>Pandas</li><li>yfinance</li><li>RSI/MACD</li></ul>
+        <p class="card-desc">Python-powered screening pipelines computing moving averages, RSI, MACD, and Bollinger Bands across the market.</p>
+      </article>
+
+      <article class="glass-card popup-card reveal" tabindex="0" data-cursor="cyan"
+        data-title="Fundamental Analysis"
+        data-stat="Long-term value ID"
+        data-desc="Systematic balance sheet, income statement, and cash flow analysis — DCF models and ratio templates for valuation."
+        data-tech="DCF, Ratio Analysis, Valuation">
+        <span class="card-icon"></span>
+        <h3>Fundamental Analysis</h3>
+        <ul class="tag-list"><li>DCF</li><li>Ratios</li><li>Valuation</li></ul>
+        <p class="card-desc">Systematic balance sheet, income statement, and cash flow analysis — DCF models and ratio templates for valuation.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="finance" class="finance">
+    <p class="eyebrow reveal">Finance &amp; Markets</p>
+    <h2 class="section-title reveal">Where numbers meet strategy.</h2>
+    <p class="section-desc reveal">I approach the market the way I approach signal processing
+      &mdash; filter the noise, amplify the signal, act on data.</p>
+
+    <div class="ticker-wrap reveal" aria-hidden="true">
+      <div class="ticker-track">
+        <span class="ticker-item"><span class="ticker-symbol">NIFTY50</span><span class="ticker-price">24,852.30</span><span class="ticker-change up">+1.24%</span></span>
+        <span class="ticker-item"><span class="ticker-symbol">SENSEX</span><span class="ticker-price">81,467.10</span><span class="ticker-change up">+0.89%</span></span>
+        <span class="ticker-item"><span class="ticker-symbol">BANKNIFTY</span><span class="ticker-price">52,134.65</span><span class="ticker-change down">-0.32%</span></span>
+        <span class="ticker-item"><span class="ticker-symbol">RELIANCE</span><span class="ticker-price">3,142.80</span><span class="ticker-change up">+2.15%</span></span>
+        <span class="ticker-item"><span class="ticker-symbol">TCS</span><span class="ticker-price">4,287.50</span><span class="ticker-change up">+0.56%</span></span>
+        <span class="ticker-item"><span class="ticker-symbol">HDFCBANK</span><span class="ticker-price">1,856.20</span><span class="ticker-change up">+1.08%</span></span>
+        <span class="ticker-item"><span class="ticker-symbol">INFY</span><span class="ticker-price">1,643.90</span><span class="ticker-change down">-0.44%</span></span>
+        <span class="ticker-item"><span class="ticker-symbol">ITC</span><span class="ticker-price">482.15</span><span class="ticker-change up">+0.73%</span></span>
+        <!-- duplicated for seamless loop -->
+        <span class="ticker-item"><span class="ticker-symbol">NIFTY50</span><span class="ticker-price">24,852.30</span><span class="ticker-change up">+1.24%</span></span>
+        <span class="ticker-item"><span class="ticker-symbol">SENSEX</span><span class="ticker-price">81,467.10</span><span class="ticker-change up">+0.89%</span></span>
+        <span class="ticker-item"><span class="ticker-symbol">BANKNIFTY</span><span class="ticker-price">52,134.65</span><span class="ticker-change down">-0.32%</span></span>
+        <span class="ticker-item"><span class="ticker-symbol">RELIANCE</span><span class="ticker-price">3,142.80</span><span class="ticker-change up">+2.15%</span></span>
+        <span class="ticker-item"><span class="ticker-symbol">TCS</span><span class="ticker-price">4,287.50</span><span class="ticker-change up">+0.56%</span></span>
+        <span class="ticker-item"><span class="ticker-symbol">HDFCBANK</span><span class="ticker-price">1,856.20</span><span class="ticker-change up">+1.08%</span></span>
+        <span class="ticker-item"><span class="ticker-symbol">INFY</span><span class="ticker-price">1,643.90</span><span class="ticker-change down">-0.44%</span></span>
+        <span class="ticker-item"><span class="ticker-symbol">ITC</span><span class="ticker-price">482.15</span><span class="ticker-change up">+0.73%</span></span>
+      </div>
+    </div>
+
+    <p class="section-hint reveal">Hover a card for details.</p>
+    <div class="skills-grid popup-grid">
+      <article class="glass-card popup-card reveal" tabindex="0" data-cursor="cyan"
+        data-title="Technical Analysis Pipeline"
+        data-stat="Python + Pandas + yfinance"
+        data-desc="Automated scripts pulling NSE/BSE data, computing moving averages, RSI, MACD, and Bollinger Bands — screening 500+ stocks for breakout patterns in minutes."
+        data-tech="RSI, MACD, Bollinger, Moving Avg">
+        <span class="card-icon"></span>
+        <h3>Technical Analysis Pipeline</h3>
+        <ul class="tag-list"><li>RSI</li><li>MACD</li><li>Bollinger</li></ul>
+        <p class="card-desc">Automated scripts pulling NSE/BSE data, computing moving averages, RSI, MACD, and Bollinger Bands — screening 500+ stocks for breakout patterns in minutes.</p>
+      </article>
+
+      <article class="glass-card popup-card reveal" tabindex="0" data-cursor="cyan"
+        data-title="Market Sentiment Tracker"
+        data-stat="Web scraping + NLP"
+        data-desc="Automated scraping of financial news and earnings reports, correlating sentiment shifts with price action for event-driven insight."
+        data-tech="Scraping, NLP, Sentiment">
+        <span class="card-icon"></span>
+        <h3>Market Sentiment Tracker</h3>
+        <ul class="tag-list"><li>Scraping</li><li>NLP</li><li>Sentiment</li></ul>
+        <p class="card-desc">Automated scraping of financial news and earnings reports, correlating sentiment shifts with price action for event-driven insight.</p>
+      </article>
+
+      <article class="glass-card popup-card reveal" tabindex="0" data-cursor="cyan"
+        data-title="Fundamental Analysis Framework"
+        data-stat="DCF + ratio analysis"
+        data-desc="A systematic approach to balance sheets, income statements, and cash flow — DCF models and ratio templates for long-term value identification."
+        data-tech="DCF, Ratio Analysis, Valuation">
+        <span class="card-icon"></span>
+        <h3>Fundamental Analysis Framework</h3>
+        <ul class="tag-list"><li>DCF</li><li>Ratios</li><li>Valuation</li></ul>
+        <p class="card-desc">A systematic approach to balance sheets, income statements, and cash flow — DCF models and ratio templates for long-term value identification.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <p class="eyebrow reveal">Projects</p>
+    <h2 class="section-title reveal">Real code, real problems.</h2>
+    <p class="section-hint reveal">Hover a project for details.</p>
+    <div class="work-grid popup-grid">
+      <article class="work-card popup-card reveal" tabindex="0" data-cursor="purple"
+        data-title="ArcReel — AI Video Platform"
+        data-stat="Full-stack, Dockerized"
+        data-desc="A complete video generation and editing platform — Python backend, React frontend, Dockerized deployment, Alembic migrations, and an integrated AI pipeline."
+        data-tech="Python, React, Docker, AI/ML">
+        <div class="work-thumb thumb-3">
+          <svg class="thumb-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <rect x="10" y="14" width="44" height="36" rx="3"/>
+            <path d="M10 22h44"/>
+            <path d="M24 32l-6 6 6 6M40 32l6 6-6 6"/>
+          </svg>
+        </div>
+        <div class="work-meta">
+          <div>
+            <h3>ArcReel &mdash; AI Video Platform</h3>
+            <span>Full-Stack &middot; AI/ML</span>
+          </div>
+          <a href="https://github.com/Megamixer-0o" target="_blank" rel="noopener" class="work-link" aria-label="View on GitHub">&#8599;</a>
+        </div>
+      </article>
+
+      <article class="work-card popup-card reveal" tabindex="0" data-cursor="cyan"
+        data-title="Stock Screener &amp; Analyzer"
+        data-stat="Automated daily scans"
+        data-desc="A Python-based screening tool pulling live market data, running technical indicators, and flagging breakout candidates on an automated daily schedule."
+        data-tech="Python, Pandas, yfinance">
+        <div class="work-thumb thumb-2">
+          <svg class="thumb-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M8 52h48"/>
+            <rect x="13" y="34" width="7" height="18"/>
+            <rect x="28" y="22" width="7" height="30"/>
+            <rect x="43" y="12" width="7" height="40"/>
+            <path d="M16 34V26M31 22v-6M46 12V8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="work-meta">
+          <div>
+            <h3>Stock Screener &amp; Analyzer</h3>
+            <span>Finance Automation &middot; Python</span>
+          </div>
+          <a href="https://github.com/Megamixer-0o" target="_blank" rel="noopener" class="work-link" aria-label="View on GitHub">&#8599;</a>
+        </div>
+      </article>
+
+      <article class="work-card popup-card reveal" tabindex="0" data-cursor="emerald"
+        data-title="Portfolio Data Pipeline"
+        data-stat="Automated end-to-end"
+        data-desc="Multi-source web scraping and data extraction — HTML parsing, section extraction, and markdown conversion, automated end-to-end."
+        data-tech="Python, BeautifulSoup, HTML Parse">
+        <div class="work-thumb thumb-1">
+          <svg class="thumb-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <circle cx="14" cy="16" r="5"/>
+            <circle cx="50" cy="16" r="5"/>
+            <circle cx="14" cy="48" r="5"/>
+            <circle cx="50" cy="48" r="5"/>
+            <circle cx="32" cy="32" r="6"/>
+            <path d="M18 18l10 10M46 18L36 28M18 46l10-10M46 46L36 36"/>
+          </svg>
+        </div>
+        <div class="work-meta">
+          <div>
+            <h3>Portfolio Data Pipeline</h3>
+            <span>Data Engineering &middot; Python</span>
+          </div>
+          <a href="https://github.com/Megamixer-0o" target="_blank" rel="noopener" class="work-link" aria-label="View on GitHub">&#8599;</a>
+        </div>
+      </article>
+    </div>
+    <p class="projects-note reveal">More on my <a href="https://github.com/Megamixer-0o" target="_blank" rel="noopener">GitHub &rarr;</a></p>
+  </section>
+
+  <section id="education" class="education">
+    <p class="eyebrow reveal">Education</p>
+    <h2 class="section-title reveal">Technical foundation.</h2>
+    <ol class="timeline">
+      <li class="timeline-item reveal">
+        <span class="timeline-dot"></span>
+        <div class="timeline-body glass-card">
+          <div class="timeline-head">
+            <h3>B.Tech &mdash; Electronics &amp; Communication Engineering</h3>
+            <span class="timeline-date">2024 &ndash; 2028</span>
+          </div>
+          <p class="timeline-org">VIT Chennai</p>
+          <p>Signal Processing &middot; Digital Communication &middot; VLSI Design &middot;
+            Embedded Systems &middot; Random Processes &middot; Network Theory &middot;
+            Analog Circuits &middot; Microcontrollers.</p>
+          <ul class="tag-list" style="margin-top:14px">
+            <li>MATLAB</li><li>Verilog</li><li>LTspice</li><li>Arduino</li><li>LabVIEW</li><li>Python</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="contact-inner">
+      <p class="eyebrow reveal">Get in touch</p>
+      <h2 class="section-title reveal">Let's build something.</h2>
+      <p class="contact-lead reveal">Open to internships, collaborations, finance-tech
+        projects, and anything at the intersection of engineering and markets.</p>
+      <a href="mailto:sanjaykrishna.bs30@gmail.com" class="contact-email reveal magnetic-btn" data-cursor="purple">sanjaykrishna.bs30@gmail.com</a>
+      <div class="hero-socials reveal">
+        <a href="https://github.com/Megamixer-0o" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/sanjaykrishna-bs-b5a8a4321/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="assets/SanjaykrishnaResume.pdf" download>Resume</a>
+      </div>
+      <p class="contact-location reveal">Chennai, India</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <span>&copy; 2026 Sanjaykrishna.B.S.</span>
+  <div class="footer-links">
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script src="js/three.min.js"></script>
+<script src="js/scene.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
