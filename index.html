@@ -16,10 +16,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root {
-  --bg: #050914; --bg2: #080d1a; --glass: rgba(255,255,255,0.025);
+  --bg: #050914; --bg2: #080d1a; --bg-elevated: #111827; --glass: rgba(255,255,255,0.025);
   --glass-hover: rgba(255,255,255,0.05); --border: rgba(255,255,255,0.06);
   --border-glow: rgba(255,255,255,0.1); --text: #E8ECF1; --text2: #C8CDD6;
-  --muted: #7B8496; --dim: #4A5266;
+  --muted: #8B95A5; --dim: #6B7484;
   --violet: #6C5CE7; --violet-g: rgba(108,92,231,0.35);
   --cyan: #00D2FF; --cyan-g: rgba(0,210,255,0.3);
   --gold: #FFD93D; --gold-g: rgba(255,217,61,0.3);
@@ -139,7 +139,10 @@ a,button,input,textarea{cursor:none}
 .hero-title{font-family:var(--font-display);font-size:clamp(3rem,7vw,5.5rem);font-weight:800;line-height:1.05;letter-spacing:-2px}
 .hero-title .w1,.hero-title .w2,.hero-title .w3{display:block}
 .hero-title .w1{color:var(--text)}.hero-title .w2{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero-title .w3{color:var(--gold)}
-.hero-sub{font-size:clamp(.95rem,1.5vw,1.1rem);color:var(--muted);line-height:1.7;max-width:500px}
+.hero-typewriter-main{background:var(--grad-full);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:neonPulse 3s ease-in-out infinite}[data-theme="light"] .typing-cursor{color:var(--violet)}.typing-cursor{color:var(--cyan);animation:typing-blink .7s step-end infinite;font-weight:300}@keyframes typing-blink{50%{opacity:0}}
+.hero-role-cycler{font-size:clamp(1.05rem,1.7vw,1.2rem);font-weight:500;color:var(--text2);margin-bottom:.6rem;min-height:2em;display:flex;align-items:center;gap:.4rem;position:relative}.hero-role-cycler::before{content:'#';color:var(--violet);font-family:var(--font-mono);font-size:.85rem;margin-right:.4rem;font-weight:700;animation:slash-pulse 2s ease-in-out infinite}[data-theme="light"] .hero-typewriter{text-shadow:0 0 12px rgba(0,136,180,.7),0 0 30px rgba(0,136,180,.35),0 0 60px rgba(91,76,196,.25)!important}
+.hero-typewriter{font-family:'Inter',sans-serif;font-weight:700;font-size:inherit;color:var(--cyan);display:inline-block;min-height:1.4em;min-width:1ch;padding:2px 8px;border-right:2.5px solid var(--cyan);border-radius:4px;background:linear-gradient(90deg,rgba(0,210,255,.08),rgba(108,92,231,.04),transparent);text-shadow:0 0 12px rgba(0,210,255,.5),0 0 30px rgba(0,210,255,.2),0 0 60px rgba(108,92,231,.1);animation:tw-blink .7s step-end infinite,tw-pulse 2s ease-in-out infinite,tw-border-glow 3s ease-in-out infinite;box-shadow:inset 0 0 8px rgba(0,210,255,.05)}@keyframes tw-blink{50%{border-color:transparent}}@keyframes tw-pulse{0%,100%{text-shadow:0 0 12px rgba(0,210,255,.5),0 0 30px rgba(0,210,255,.2),0 0 60px rgba(108,92,231,.1)}50%{text-shadow:0 0 24px rgba(0,210,255,.9),0 0 50px rgba(0,210,255,.4),0 0 80px rgba(108,92,231,.2)}}@keyframes tw-border-glow{0%,100%{border-right-color:var(--cyan)}50%{border-right-color:var(--violet)}}@keyframes slash-pulse{0%,100%{opacity:.5}50%{opacity:1}}
+[data-theme="light"] .hero-sub{color:var(--text2)}.hero-sub{font-size:clamp(.95rem,1.5vw,1.1rem);color:var(--muted);line-height:1.7;max-width:500px}
 .hero-sub strong{color:var(--text);font-weight:600}
 .hero-tags{display:flex;flex-wrap:wrap;gap:.5rem}
 .hero-tag{padding:.35rem .9rem;border-radius:var(--r-full);border:1px solid var(--border);font-size:.75rem;color:var(--text2);font-weight:500;transition:all var(--t-med);background:var(--glass)}
@@ -163,7 +166,7 @@ a,button,input,textarea{cursor:none}
 /* ── Dividers ── */
 .divider{position:relative;height:180px;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center}
 .divider canvas{width:100%;height:100%}
-.divider-label{position:absolute;font-family:var(--font-mono);font-size:.6rem;letter-spacing:5px;color:var(--dim);text-transform:uppercase;z-index:2;opacity:.5}
+[data-theme="light"] .divider-label{color:var(--muted);opacity:.8}.divider-label{position:absolute;font-family:var(--font-mono);font-size:.6rem;letter-spacing:5px;color:var(--dim);text-transform:uppercase;z-index:2;opacity:.5}
 
 /* ── Cards ── */
 .cards-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem}
@@ -198,6 +201,7 @@ a,button,input,textarea{cursor:none}
 .edu-stat-lbl{font-size:.65rem;color:var(--muted);margin-top:.15rem;text-transform:uppercase;letter-spacing:.5px}
 
 /* ── Finance ticker ── */
+.ticker-pause{position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:10;width:26px;height:26px;border-radius:50%;border:1px solid var(--border);background:var(--glass);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.6rem;transition:all var(--t-fast)}.ticker-pause:hover{border-color:var(--violet);color:var(--violet)}.ticker-wrap{position:relative}.ticker-track.paused{animation-play-state:paused}
 .ticker-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.6rem 0;margin-bottom:2.5rem;position:relative}
 .ticker-track{display:flex;gap:3rem;animation:ticker-scroll 30s linear infinite;width:max-content}
 @keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
@@ -278,7 +282,7 @@ a,button,input,textarea{cursor:none}
   .hero-visual{order:-1}
   .hero-title{font-size:clamp(2.2rem,9vw,3.5rem)}
   .hero-chip{font-size:.68rem;margin:0 auto;width:fit-content}
-  .hero-sub{font-size:.88rem;max-width:100%;margin:0 auto}
+  [data-theme="light"] .hero-sub{color:var(--text2)}.hero-sub{font-size:.88rem;max-width:100%;margin:0 auto}
   .hero-tags{justify-content:center}
   .hero-btns{justify-content:center}
   .hero-socials{justify-content:center}
@@ -336,6 +340,21 @@ a,button,input,textarea{cursor:none}
   .nav-hamburger{min-width:44px;min-height:44px}
   .form-group input,.form-group textarea{font-size:16px}
 }
+
+/* ═══════════ REDUCED MOTION ═══════════ */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .hero-orb-ring{animation:none!important}
+  .hero-orb-icon{animation:none!important}
+  .ticker-track{animation:none!important}
+  .ticker-pause{display:none!important}
+  .loader{display:none!important}
+  .cursor,.cursor-dot{display:none!important}
+  .scroll-bar,.scroll-pct{transition:none!important}
+  .floating-shapes{display:none!important}
+  .hero-badge{animation:none!important}
+}
+
 </style></head>
 <body>
 
@@ -389,11 +408,14 @@ a,button,input,textarea{cursor:none}
     <div class="hero-text-col reveal">
       <div class="hero-chip"><span class="pulse-dot"></span> BTech ECE · VIT Chennai · Intern @ Airtel · VPM Toastmasters</div>
       <h1 class="hero-title">
-        <span class="w1">Signal</span>
-        <span class="w2">Processing</span>
-        <span class="w3">Markets</span>
+        I am <span class="hero-typewriter-main" id="heroTypewriter"></span><span class="typing-cursor">|</span>
       </h1>
-      <p class="hero-sub">I'm <strong>Sanjaykrishna.B.S</strong> — an ECE engineer who treats the stock market like a signal processing problem. Noise reduction, pattern recognition, amplification of alpha.</p>
+      <div class="hero-badge reveal">
+        <span class="badge-pulse"></span>
+        Open to Internships & Collaborations
+      </div>
+      <div class="hero-role-cycler"><span class="hero-typewriter" id="roleTypewriter"></span></div>
+      <p class="hero-sub">An ECE engineer who treats the stock market like a signal processing problem. Noise reduction, pattern recognition, amplification of alpha.</p>
       <div class="hero-tags">
         <span class="hero-tag">Signal Processing</span><span class="hero-tag">Python</span><span class="hero-tag">Stock Analysis</span>
         <span class="hero-tag">IoT</span><span class="hero-tag">Embedded Systems</span><span class="hero-tag">Web Dev</span>
@@ -477,7 +499,7 @@ a,button,input,textarea{cursor:none}
       <div class="card-sub">Key Coursework</div>
       <div class="card-title">Technical Arsenal</div>
       <p class="card-desc">Signal Processing · Digital Communication · VLSI Design · Embedded Systems · Random Processes · Network Theory · Analog Circuits · Microcontrollers</p>
-      <div class="card-tags"><span class="card-tag">MATLAB</span><span class="card-tag">Verilog</span><span class="card-tag">LTspice</span><span class="card-tag">Arduino</span><span class="card-tag">LabVIEW</span><span class="card-tag">Python</span></div>
+      <div class="card-tags"><span class="card-tag" data-tooltip="Matrix Laboratory — simulation, modeling, and data analysis">MATLAB</span><span class="card-tag" data-tooltip="Hardware description language for digital circuit design">Verilog</span><span class="card-tag">LTspice</span><span class="card-tag">Arduino</span><span class="card-tag">LabVIEW</span><span class="card-tag" data-tooltip="General-purpose scripting, automation, data science, and AI/ML">Python</span></div>
     </div>
   </div>
 </div></section>
@@ -500,7 +522,7 @@ a,button,input,textarea{cursor:none}
         <div class="exp-role">Network Engineer Intern</div>
         <div class="exp-date">2025</div>
         <p class="exp-desc">Hands-on telecom network operations — signal monitoring, infrastructure diagnostics, real-time troubleshooting. Learned how large-scale communication systems handle millions of concurrent signals.</p>
-        <div class="card-tags"><span class="card-tag">Network Ops</span><span class="card-tag">Telecom</span><span class="card-tag">RF Diagnostics</span></div>
+        <div class="card-tags"><span class="card-tag" data-tooltip="Monitoring and maintaining telecom infrastructure at scale">Network Ops</span><span class="card-tag" data-tooltip="Cellular networks, signal transmission, and RF engineering">Telecom</span><span class="card-tag" data-tooltip="Radio frequency troubleshooting and spectrum analysis">RF Diagnostics</span></div>
       </div>
     </div>
     <div class="exp-card reveal">
@@ -510,7 +532,7 @@ a,button,input,textarea{cursor:none}
         <div class="exp-role">VP Membership — Club Leadership</div>
         <div class="exp-date">2024 – Present</div>
         <p class="exp-desc">Leading membership growth, organizing club events, mentoring speakers. Built public speaking, team leadership, and event management skills — the soft skills that amplify technical ability.</p>
-        <div class="card-tags"><span class="card-tag">Leadership</span><span class="card-tag">Public Speaking</span><span class="card-tag">Mentoring</span></div>
+        <div class="card-tags"><span class="card-tag" data-tooltip="Team building, event organization, and mentoring at Toastmasters">Leadership</span><span class="card-tag" data-tooltip="Prepared and impromptu speeches, evaluation, and stage presence">Public Speaking</span><span class="card-tag" data-tooltip="Guiding new members through their public speaking journey">Mentoring</span></div>
       </div>
     </div>
   </div>
@@ -532,25 +554,25 @@ a,button,input,textarea{cursor:none}
       <div class="card-icon"><i class="fas fa-microchip"></i></div>
       <div class="card-title">ECE Engineering</div>
       <p class="card-desc">Signal processing, embedded systems, VLSI, MATLAB, communication theory — the hardware-first foundation that shapes how I think about every system.</p>
-      <div class="card-tags"><span class="card-tag">Signal Processing</span><span class="card-tag">MATLAB</span><span class="card-tag">VLSI</span><span class="card-tag">Embedded C</span><span class="card-tag">IoT</span><span class="card-tag">Verilog</span></div>
+      <div class="card-tags"><span class="card-tag" data-tooltip="Fourier transforms, filtering, noise reduction — the math behind clean signals">Signal Processing</span><span class="card-tag" data-tooltip="Matrix Laboratory — simulation, modeling, and data analysis">MATLAB</span><span class="card-tag" data-tooltip="Very Large Scale Integration — chip design and digital circuits">VLSI</span><span class="card-tag" data-tooltip="C programming for microcontrollers and real-time systems">Embedded C</span><span class="card-tag" data-tooltip="Internet of Things — connecting sensors and devices to the cloud">IoT</span><span class="card-tag" data-tooltip="Hardware description language for digital circuit design">Verilog</span></div>
     </div>
     <div class="glass-card reveal">
       <div class="card-icon"><i class="fas fa-code"></i></div>
       <div class="card-title">Software Development</div>
       <p class="card-desc">Python for automation, data analysis, and tooling. HTML/CSS/JS for full-stack web. Git, SQL, and system design. I build things that work end-to-end.</p>
-      <div class="card-tags"><span class="card-tag">Python</span><span class="card-tag">HTML/CSS</span><span class="card-tag">JavaScript</span><span class="card-tag">Git</span><span class="card-tag">SQL</span><span class="card-tag">Data Viz</span></div>
+      <div class="card-tags"><span class="card-tag" data-tooltip="General-purpose scripting, automation, data science, and AI/ML">Python</span><span class="card-tag" data-tooltip="Semantic markup and modern responsive styling">HTML/CSS</span><span class="card-tag" data-tooltip="Dynamic frontend logic and interactive web experiences">JavaScript</span><span class="card-tag" data-tooltip="Distributed version control — branching, merging, collaborating">Git</span><span class="card-tag" data-tooltip="Structured Query Language — relational databases and analytics">SQL</span><span class="card-tag" data-tooltip="Turning raw numbers into compelling visual stories">Data Viz</span></div>
     </div>
     <div class="glass-card reveal">
       <div class="card-icon"><i class="fas fa-chart-line"></i></div>
       <div class="card-title">Finance & Markets</div>
       <p class="card-desc">Technical analysis, fundamental research, financial modeling — applying engineering rigor to market decisions. Python-powered screening and data pipelines.</p>
-      <div class="card-tags"><span class="card-tag">Technical Analysis</span><span class="card-tag">Stock Research</span><span class="card-tag">Financial Modeling</span><span class="card-tag">Pandas</span><span class="card-tag">yfinance</span></div>
+      <div class="card-tags"><span class="card-tag" data-tooltip="Chart patterns, indicators, and price action strategies">Technical Analysis</span><span class="card-tag" data-tooltip="Fundamental and technical due diligence on equities">Stock Research</span><span class="card-tag" data-tooltip="DCF, ratio analysis, and valuation frameworks">Financial Modeling</span><span class="card-tag" data-tooltip="Python data manipulation library — the backbone of quant workflows">Pandas</span><span class="card-tag" data-tooltip="Yahoo Finance API wrapper for real-time market data">yfinance</span></div>
     </div>
   </div>
 </div></section>
 
-<!-- Divider 5: Data stream -->
-<div class="divider" data-divider="stream"><canvas id="div-stream"></canvas><span class="divider-label">~ Data Transmission ~</span></div>
+<!-- Divider 5: Market Pulse -->
+<div class="divider" data-divider="flow"><canvas id="div-flow"></canvas><span class="divider-label">~ Data Transmission ~</span></div>
 
 <!-- ═══════════ FINANCE & MARKETS ═══════════ -->
 <section id="finance" class="section"><div class="container">
@@ -562,7 +584,8 @@ a,button,input,textarea{cursor:none}
   </div>
   <!-- Live-looking ticker -->
   <div class="ticker-wrap reveal">
-    <div class="ticker-track" id="tickerTrack">
+    <button class="ticker-pause" id="tickerPause" aria-label="Pause ticker" title="Pause"><i class="fas fa-pause"></i></button>
+          <div class="ticker-track" id="tickerTrack">
       <div class="ticker-item"><span class="ticker-symbol">NIFTY50</span><span class="ticker-price">24,852.30</span><span class="ticker-change ticker-up">+1.24%</span></div>
       <div class="ticker-item"><span class="ticker-symbol">SENSEX</span><span class="ticker-price">81,467.10</span><span class="ticker-change ticker-up">+0.89%</span></div>
       <div class="ticker-item"><span class="ticker-symbol">BANKNIFTY</span><span class="ticker-price">52,134.65</span><span class="ticker-change ticker-down">-0.32%</span></div>
@@ -584,21 +607,21 @@ a,button,input,textarea{cursor:none}
       <div class="card-title">Technical Analysis Pipeline</div>
       <div class="card-sub">Python + Pandas + yfinance</div>
       <p class="card-desc">Built automated scripts to pull NSE/BSE data, compute moving averages, RSI, MACD, Bollinger Bands. Screening 500+ stocks for breakout patterns in minutes.</p>
-      <div class="card-tags"><span class="card-tag">RSI</span><span class="card-tag">MACD</span><span class="card-tag">Bollinger</span><span class="card-tag">Moving Avg</span></div>
+      <div class="card-tags"><span class="card-tag" data-tooltip="Relative Strength Index — momentum oscillator for overbought/oversold">RSI</span><span class="card-tag" data-tooltip="Moving Average Convergence Divergence — trend-following indicator">MACD</span><span class="card-tag" data-tooltip="Bollinger Bands — volatility-based price channels">Bollinger</span><span class="card-tag" data-tooltip="Simple and exponential moving averages for trend detection">Moving Avg</span></div>
     </div>
     <div class="glass-card reveal">
       <div class="card-icon"><i class="fas fa-newspaper"></i></div>
       <div class="card-title">Market Sentiment Tracker</div>
       <div class="card-sub">Web Scraping + NLP</div>
       <p class="card-desc">Automated scraping of financial news and earnings reports. Correlating sentiment shifts with price action for event-driven insight.</p>
-      <div class="card-tags"><span class="card-tag">Scraping</span><span class="card-tag">NLP</span><span class="card-tag">Sentiment</span><span class="card-tag">Correlation</span></div>
+      <div class="card-tags"><span class="card-tag" data-tooltip="Automated web data extraction using BeautifulSoup and requests">Scraping</span><span class="card-tag" data-tooltip="Natural Language Processing — sentiment and entity extraction from text">NLP</span><span class="card-tag" data-tooltip="Market mood analysis from news, social media, and reports">Sentiment</span><span class="card-tag" data-tooltip="Statistical relationship between sentiment shifts and price moves">Correlation</span></div>
     </div>
     <div class="glass-card reveal">
       <div class="card-icon"><i class="fas fa-balance-scale"></i></div>
       <div class="card-title">Fundamental Analysis Framework</div>
       <div class="card-sub">DCF · Ratio Analysis · Screening</div>
       <p class="card-desc">Systematic approach to balance sheets, income statements, cash flow. DCF models and ratio templates for long-term value identification.</p>
-      <div class="card-tags"><span class="card-tag">DCF</span><span class="card-tag">Ratio Analysis</span><span class="card-tag">Valuation</span></div>
+      <div class="card-tags"><span class="card-tag" data-tooltip="Discounted Cash Flow — intrinsic valuation using future cash flows">DCF</span><span class="card-tag" data-tooltip="P/E, P/B, ROE, and other financial health metrics">Ratio Analysis</span><span class="card-tag" data-tooltip="Determining fair value of assets using multiple methodologies">Valuation</span></div>
     </div>
   </div>
 </div></section>
@@ -621,7 +644,7 @@ a,button,input,textarea{cursor:none}
         <div class="project-cat">Full-Stack Application</div>
         <div class="project-title">ArcReel — AI Video Platform</div>
         <p class="project-desc">Complete video generation and editing platform. Python backend, React frontend, Dockerized, Alembic migrations, AI pipeline integration.</p>
-        <div class="card-tags"><span class="card-tag">Python</span><span class="card-tag">React</span><span class="card-tag">Docker</span><span class="card-tag">AI/ML</span></div>
+        <div class="card-tags"><span class="card-tag" data-tooltip="General-purpose scripting, automation, data science, and AI/ML">Python</span><span class="card-tag" data-tooltip="Component-based UI library for building interactive frontends">React</span><span class="card-tag" data-tooltip="Containerization platform for reproducible deployments">Docker</span><span class="card-tag" data-tooltip="Artificial Intelligence and Machine Learning pipelines">AI/ML</span></div>
       </div>
     </div>
     <div class="project-card reveal">
@@ -630,7 +653,7 @@ a,button,input,textarea{cursor:none}
         <div class="project-cat">Finance Automation</div>
         <div class="project-title">Stock Screener & Analyzer</div>
         <p class="project-desc">Python-based screening tool pulling live market data, running technical indicators, and flagging breakout candidates. Automated daily scans.</p>
-        <div class="card-tags"><span class="card-tag">Python</span><span class="card-tag">Pandas</span><span class="card-tag">yfinance</span><span class="card-tag">Automation</span></div>
+        <div class="card-tags"><span class="card-tag" data-tooltip="General-purpose scripting, automation, data science, and AI/ML">Python</span><span class="card-tag" data-tooltip="Python data manipulation library — the backbone of quant workflows">Pandas</span><span class="card-tag" data-tooltip="Yahoo Finance API wrapper for real-time market data">yfinance</span><span class="card-tag" data-tooltip="Scripting repetitive workflows to save time and reduce errors">Automation</span></div>
       </div>
     </div>
     <div class="project-card reveal">
@@ -639,7 +662,7 @@ a,button,input,textarea{cursor:none}
         <div class="project-cat">Data Engineering</div>
         <div class="project-title">Portfolio Data Pipeline</div>
         <p class="project-desc">Multi-source web scraping and data extraction. HTML parsing, section extraction, markdown conversion — automated end-to-end.</p>
-        <div class="card-tags"><span class="card-tag">Python</span><span class="card-tag">BeautifulSoup</span><span class="card-tag">HTML Parse</span></div>
+        <div class="card-tags"><span class="card-tag" data-tooltip="General-purpose scripting, automation, data science, and AI/ML">Python</span><span class="card-tag" data-tooltip="Python HTML parser for web scraping and data extraction">BeautifulSoup</span><span class="card-tag" data-tooltip="Extracting structured data from unstructured web pages">HTML Parse</span></div>
       </div>
     </div>
   </div>
@@ -676,9 +699,9 @@ a,button,input,textarea{cursor:none}
       </div>
     </div>
     <form class="reveal" onsubmit="handleForm(event)">
-      <div class="form-group"><label>Name</label><input type="text" placeholder="Your name" required></div>
-      <div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
-      <div class="form-group"><label>Message</label><textarea rows="4" placeholder="What's the project?" required></textarea></div>
+      <div class="form-group"><label>Name</label><input type="text" name="name" autocomplete="name" placeholder="Your name" required></div>
+      <div class="form-group"><label>Email</label><input type="email" name="email" autocomplete="email" placeholder="you@email.com" required></div>
+      <div class="form-group"><label>Message</label><textarea rows="4" name="message" placeholder="What's the project?" required></textarea></div>
       <button type="submit" class="btn-primary" style="width:100%;justify-content:center">Send Signal <i class="fas fa-paper-plane"></i></button>
     </form>
   </div>
@@ -704,7 +727,7 @@ a,button,input,textarea{cursor:none}
     p.style.animationDelay=Math.random()*1+'s';
     p.style.left='50%';p.style.top='50%';particles.appendChild(p);
   }
-  window.addEventListener('load',()=>setTimeout(()=>loader.classList.add('hidden'),1200));
+  window.addEventListener('load',()=>{const mq=window.matchMedia('(prefers-reduced-motion:reduce)');const delay=mq.matches?0:600;setTimeout(()=>loader.classList.add('hidden'),delay);});
 })();
 
 /* ═══════════ THEME TOGGLE ═══════════ */
@@ -835,10 +858,22 @@ function raf(t){lenis.raf(t);requestAnimationFrame(raf)}requestAnimationFrame(ra
 /* ═══════════ FORM HANDLER ═══════════ */
 function handleForm(e){
   e.preventDefault();const b=e.target.querySelector('button'),o=b.innerHTML;
+  const form=e.target;
+  form.querySelectorAll('.field-error').forEach(el=>el.remove());
+  form.querySelectorAll('.field-invalid').forEach(el=>el.classList.remove('field-invalid'));
+  let valid=true;
+  form.querySelectorAll('[required]').forEach(field=>{
+    if(!field.value.trim()){
+      valid=false;field.classList.add('field-invalid');
+      const err=document.createElement('span');err.className='field-error';
+      err.textContent='This field is required';field.parentNode.appendChild(err);
+    }
+  });
+  if(!valid)return;
   b.innerHTML='<i class="fas fa-spinner fa-spin"></i> Transmitting...';b.disabled=true;
   setTimeout(()=>{
-    b.innerHTML='<i class="fas fa-check"></i> Signal Sent!';b.style.background='#00E676';
-    e.target.reset();setTimeout(()=>{b.innerHTML=o;b.style.background='';b.disabled=false},2500);
+    b.innerHTML='<i class="fas fa-check"></i> Signal Sent!';b.style.background='var(--green)';
+    form.reset();setTimeout(()=>{b.innerHTML=o;b.style.background='';b.disabled=false},2500);
   },1200);
 }
 
@@ -977,7 +1012,8 @@ function handleForm(e){
     function draw(t){
       ctx.clearRect(0,0,canvas.width,canvas.height);
       const w=canvas.width,h=canvas.height,cx=w/2,cy=h/2;
-      ctx.strokeStyle='rgba(108,92,231,.15)';ctx.lineWidth=1.5;
+      const isLight=document.documentElement.getAttribute("data-theme")==="light";
+      ctx.strokeStyle=isLight?'rgba(91,76,196,.4)':'rgba(108,92,231,.2)';ctx.lineWidth=1.5;
       
       if(type==='wave'){
         ctx.beginPath();
@@ -985,7 +1021,7 @@ function handleForm(e){
           const y=cy+Math.sin(x*.02+t*.002)*30+Math.sin(x*.05+t*.003)*15;
           x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
         }ctx.stroke();
-        ctx.strokeStyle='rgba(0,210,255,.08)';ctx.lineWidth=1;
+        ctx.strokeStyle=isLight?'rgba(0,136,180,.3)':'rgba(0,210,255,.12)';ctx.lineWidth=isLight?2:1.5;
         ctx.beginPath();
         for(let x=0;x<w;x+=2){
           const y=cy+Math.cos(x*.03+t*.002)*20+Math.cos(x*.06-t*.001)*10;
@@ -998,7 +1034,7 @@ function handleForm(e){
         for(let x=grid;x<w;x+=grid){
           for(let y=grid;y<h;y+=grid){
             const b=Math.sin(x*.1+t*.001)*Math.cos(y*.1+t*.001);
-            if(b>.3){ctx.fillStyle=`rgba(108,92,231,${(b-.3)*.3})`;ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);ctx.fill()}
+            if(b>.3){ctx.fillStyle=isLight?`rgba(91,76,196,${(b-.3)*.55})`:`rgba(108,92,231,${(b-.3)*.3})`;ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);ctx.fill()}
           }
         }
       }else if(type==='ring'){
@@ -1006,7 +1042,7 @@ function handleForm(e){
         for(let i=0;i<rings;i++){
           const r=20+i*25;ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.stroke();
           const a=t*.001+i*1.2;const px=cx+Math.cos(a)*r,py=cy+Math.sin(a)*r;
-          ctx.fillStyle='rgba(0,210,255,.5)';ctx.beginPath();ctx.arc(px,py,2.5,0,Math.PI*2);ctx.fill();
+          ctx.fillStyle=isLight?'rgba(0,136,180,.7)':'rgba(0,210,255,.5)';ctx.beginPath();ctx.arc(px,py,2.5,0,Math.PI*2);ctx.fill();
         }
       }else if(type==='spiral'){
         ctx.beginPath();
@@ -1014,17 +1050,37 @@ function handleForm(e){
           const r=a*15+t*.02;const x=cx+Math.cos(a)*r*.15,y=cy+Math.sin(a)*r*.15;
           a===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
         }ctx.stroke();
-      }else if(type==='stream'){
-        ctx.font='11px "JetBrains Mono",monospace';ctx.fillStyle='rgba(0,210,255,.12)';
-        const chars='01ABCDEF9876543210';
-        for(let x=0;x<w;x+=18){
-          const col=Math.floor(x/18);const offset=(t*.05+col*7)%chars.length;
-          for(let y=0;y<h;y+=16){
-            const idx=(Math.floor(y/16)+offset)%chars.length;
-            ctx.fillText(chars[idx],x,y+16);
-          }
+      }else if(type==='flow'){
+        // Smooth market pulse — overlapping sine waves with varying amplitude
+        const midY=cy;
+        // Layer 1: Slow macro wave (market trend)
+        ctx.strokeStyle=isLight?'rgba(91,76,196,.5)':'rgba(108,92,231,.25)';ctx.lineWidth=isLight?3:2;
+        ctx.beginPath();
+        for(let x=0;x<=w;x+=2){
+          const y=midY+Math.sin(x*.004+t*.0008)*40+Math.sin(x*.012+t*.0015)*20;
+          x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+        }ctx.stroke();
+        // Layer 2: Medium wave (sector rotation)
+        ctx.strokeStyle=isLight?'rgba(0,136,180,.4)':'rgba(0,210,255,.2)';ctx.lineWidth=isLight?2:1.5;
+        ctx.beginPath();
+        for(let x=0;x<=w;x+=2){
+          const y=midY+Math.sin(x*.008-t*.0012)*25+Math.cos(x*.02+t*.002)*15;
+          x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+        }ctx.stroke();
+        // Layer 3: Fast wave (daily noise)
+        ctx.strokeStyle=isLight?'rgba(184,134,11,.3)':'rgba(255,217,61,.12)';ctx.lineWidth=isLight?1.5:1;
+        ctx.beginPath();
+        for(let x=0;x<=w;x+=3){
+          const y=midY+Math.sin(x*.025-t*.003)*12+Math.sin(x*.05+t*.004)*8;
+          x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+        }ctx.stroke();
+        // Glowing dots at wave peaks
+        for(let i=0;i<6;i++){
+          const px=w*(.1+i*.15);const wave=midY+Math.sin(px*.004+t*.0008)*40+Math.sin(px*.008-t*.0012)*25;
+          const glow=ctx.createRadialGradient(px,wave,0,px,wave,6);
+          glow.addColorStop(0,isLight?'rgba(0,136,180,.8)':'rgba(0,210,255,.5)');glow.addColorStop(1,'rgba(0,210,255,0)');
+          ctx.fillStyle=glow;ctx.beginPath();ctx.arc(px,wave,6,0,Math.PI*2);ctx.fill();
         }
-        const scanY=(t*.08)%h;ctx.fillStyle='rgba(0,210,255,.06)';ctx.fillRect(0,scanY,w,1);
       }else if(type==='candle'){
         const candleW=8,gap=20,startX=cx-((Math.floor(w/gap)*gap)/2);
         for(let x=startX;x<startX+Math.floor(w/gap)*gap;x+=gap){
@@ -1032,18 +1088,18 @@ function handleForm(e){
           const close=cy+Math.sin(x*.02+t*.0007)*25+Math.sin(x*.03)*15;
           const high=Math.min(open,close)-8-Math.random()*8;
           const low=Math.max(open,close)+8+Math.random()*8;
-          ctx.strokeStyle='rgba(255,255,255,.06)';ctx.beginPath();ctx.moveTo(x,high);ctx.lineTo(x,low);ctx.stroke();
-          ctx.fillStyle=close>open?'rgba(0,230,118,.15)':'rgba(255,107,107,.15)';
+          ctx.strokeStyle=isLight?'rgba(0,0,0,.12)':'rgba(255,255,255,.08)';ctx.beginPath();ctx.moveTo(x,high);ctx.lineTo(x,low);ctx.stroke();
+          ctx.fillStyle=close>open?(isLight?'rgba(5,150,105,.35)':'rgba(0,230,118,.18)'):(isLight?'rgba(220,38,38,.3)':'rgba(255,107,107,.15)');
           ctx.fillRect(x-candleW/2,Math.min(open,close),candleW,Math.abs(close-open));
         }
       }else if(type==='constellation'){
         const nodes=[];const nCount=25;
         for(let i=0;i<nCount;i++){nodes.push({x:Math.random()*w,y:Math.random()*h,r:1.5+Math.random()*2})}
-        nodes.forEach(n=>{ctx.fillStyle='rgba(108,92,231,.4)';ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fill()});
+        nodes.forEach(n=>{ctx.fillStyle=isLight?'rgba(91,76,196,.6)':'rgba(108,92,231,.4)';ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fill()});
         for(let i=0;i<nodes.length;i++){
           for(let j=i+1;j<nodes.length;j++){
             const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,dist=Math.sqrt(dx*dx+dy*dy);
-            if(dist<120){ctx.strokeStyle=`rgba(108,92,231,${.1*(1-dist/120)})`;ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.stroke()}
+            if(dist<120){ctx.strokeStyle=isLight?`rgba(91,76,196,${.2*(1-dist/120)})`:`rgba(108,92,231,${.1*(1-dist/120)})`;ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.stroke()}
           }
         }
       }
@@ -1056,10 +1112,69 @@ function handleForm(e){
   });
 })();
 
+
+
+/* HERO NAME TYPEWRITER */
+(function(){
+  const el=document.getElementById('heroTypewriter');
+  if(!el)return;
+  const name='Sanjaykrishna.B.S';
+  let i=0;
+  function type(){
+    if(i<name.length){el.textContent+=name[i];i++;setTimeout(type,80+Math.random()*40)}
+  }
+  const obs=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting){setTimeout(type,400);obs.unobserve(el)}
+  },{threshold:.3});
+  obs.observe(el);
+})();
+
+/* ═══════════ TYPEWRITER CYCLING TEXT ═══════════ */
+(function(){
+  const phrases=[
+    'Stock Analyst',
+    'Python Developer',
+    'Embedded Engineer',
+    'Quantitative Thinker',
+    'Full-Stack Builder',
+    'Data-Driven Trader',
+    'Signal Processing Nerd'
+  ];
+  const tw=document.getElementById('roleTypewriter');
+  if(!tw)return;
+  
+  let phraseIdx=0,charIdx=0,isDeleting=false;
+  function tick(){
+    const current=phrases[phraseIdx];
+    if(!isDeleting){
+      tw.textContent=current.substring(0,charIdx+1);
+      charIdx++;
+      if(charIdx===current.length){
+        setTimeout(()=>{isDeleting=true;tick()},2000);
+        return;
+      }
+    }else{
+      tw.textContent=current.substring(0,charIdx-1);
+      charIdx--;
+      if(charIdx===0){
+        isDeleting=false;
+        phraseIdx=(phraseIdx+1)%phrases.length;
+        tw.textContent='\u00A0';
+      }
+    }
+    const speed=isDeleting?40:80;
+    setTimeout(tick,speed);
+  }
+  const obs=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting){tick();obs.unobserve(tw)}
+  },{threshold:.3});
+  obs.observe(tw);
+})();
+
 /* ═══════════ GSAP SECTION ENTRANCES ═══════════ */
 gsap.registerPlugin(ScrollTrigger);
 document.querySelectorAll('.glass-card,.exp-card,.project-card').forEach((el,i)=>{
-  gsap.fromTo(el,{opacity:0,y:50},{opacity:1,y:0,duration:.8,delay:i*.08,ease:'power2.out',
+  gsap.fromTo(el,{opacity:0,y:60,scale:.95},{opacity:1,y:0,scale:1,duration:.8,delay:i*.08,ease:'power3.out',
     scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}});
 });
 </script>
