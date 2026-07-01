@@ -681,7 +681,7 @@ a,button,input,textarea{cursor:none}
   </div>
   <div class="contact-grid">
     <div class="contact-info reveal">
-      <a href="mailto:sanjaykrishna.bs30@gmail.com" class="contact-item">
+      <a href="mailto:sanjaykrishna.bs30@gmail.com" class="contact-item" onclick="event.preventDefault();navigator.clipboard.writeText('sanjaykrishna.bs30@gmail.com').then(function(){var t=this.querySelector('.civ');if(t){var o=t.textContent;t.textContent='Copied!';setTimeout(function(){t.textContent=o},1500)}}.bind(this));setTimeout(function(){window.location.href='mailto:sanjaykrishna.bs30@gmail.com'},200)">
         <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
         <div class="contact-item-text"><div class="cil">Email</div><div class="civ">sanjaykrishna.bs30@gmail.com</div></div>
       </a>
@@ -698,7 +698,10 @@ a,button,input,textarea{cursor:none}
         <div class="contact-item-text"><div class="cil">Location</div><div class="civ">Chennai, India</div></div>
       </div>
     </div>
-    <form class="reveal" onsubmit="handleForm(event)">
+    <form class="reveal" onsubmit="handleForm(event)" action="https://formsubmit.co/sanjaykrishna.bs30@gmail.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="Portfolio Contact — New Message!">
+      <input type="hidden" name="_template" value="table">
       <div class="form-group"><label>Name</label><input type="text" name="name" autocomplete="name" placeholder="Your name" required></div>
       <div class="form-group"><label>Email</label><input type="email" name="email" autocomplete="email" placeholder="you@email.com" required></div>
       <div class="form-group"><label>Message</label><textarea rows="4" name="message" placeholder="What's the project?" required></textarea></div>
@@ -871,10 +874,16 @@ function handleForm(e){
   });
   if(!valid)return;
   b.innerHTML='<i class="fas fa-spinner fa-spin"></i> Transmitting...';b.disabled=true;
-  setTimeout(()=>{
-    b.innerHTML='<i class="fas fa-check"></i> Signal Sent!';b.style.background='var(--green)';
-    form.reset();setTimeout(()=>{b.innerHTML=o;b.style.background='';b.disabled=false},2500);
-  },1200);
+  fetch(form.action,{method:'POST',body:new FormData(form)})
+    .then(r=>{
+      b.innerHTML='<i class="fas fa-check"></i> Signal Sent!';b.style.background='var(--green)';
+      form.reset();setTimeout(()=>{b.innerHTML=o;b.style.background='';b.disabled=false},3000);
+    })
+    .catch(()=>{
+      b.innerHTML='<i class="fas fa-exclamation-triangle"></i> Try Again';
+      b.style.background='var(--coral)';b.disabled=false;
+      setTimeout(()=>{b.innerHTML=o;b.style.background=''},3000);
+    });
 }
 
 /* ═══════════ 3D GALAXY BACKGROUND ═══════════ */
