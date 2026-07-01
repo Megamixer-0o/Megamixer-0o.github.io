@@ -798,16 +798,25 @@ function raf(t){lenis.raf(t);requestAnimationFrame(raf)}requestAnimationFrame(ra
 (function(){
   const chars='!@#$%&*ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   document.querySelectorAll('.scramble').forEach(el=>{
-    const original=el.textContent;
+    const original=el.textContent.trim();
+    el.textContent='\u00A0'.repeat(original.length);
     const obs=new IntersectionObserver(entries=>{
       entries.forEach(e=>{
         if(!e.isIntersecting)return;obs.unobserve(el);
-        let i=0;const iv=setInterval(()=>{
-          el.textContent=original.split('').map((c,j)=>j<=i?c:chars[Math.floor(Math.random()*chars.length)]).join('');
-          i++;if(i>original.length){clearInterval(iv);el.textContent=original}
-        },60);
+        let start=0;const duration=800;
+        function tick(ts){
+          if(!start)start=ts;
+          const progress=Math.min((ts-start)/duration,1);
+          const resolved=Math.floor(progress*original.length);
+          el.textContent=original.split('').map((c,j)=>
+            j<resolved?c:chars[Math.floor(Math.random()*chars.length)]
+          ).join('');
+          if(progress<1)requestAnimationFrame(tick);
+          else el.textContent=original;
+        }
+        requestAnimationFrame(tick);
       });
-    },{threshold:.5});obs.observe(el);
+    },{threshold:.3,rootMargin:'0px 0px -10px 0px'});obs.observe(el);
   });
 })();
 
@@ -1015,6 +1024,7 @@ function handleForm(e){
             ctx.fillText(chars[idx],x,y+16);
           }
         }
+        const scanY=(t*.08)%h;ctx.fillStyle='rgba(0,210,255,.06)';ctx.fillRect(0,scanY,w,1);
       }else if(type==='candle'){
         const candleW=8,gap=20,startX=cx-((Math.floor(w/gap)*gap)/2);
         for(let x=startX;x<startX+Math.floor(w/gap)*gap;x+=gap){
@@ -1038,7 +1048,6 @@ function handleForm(e){
         }
       }
       
-      const scanY=(t*.05)%h;ctx.fillStyle='rgba(108,92,231,.03)';ctx.fillRect(0,scanY,w,2);
       requestAnimationFrame(()=>draw(t+16));
     }
     const obs=new IntersectionObserver(entries=>{
