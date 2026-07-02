@@ -992,6 +992,9 @@ a,button,input,textarea{cursor:none}
     popup.style.left=left+'px';
     popup.style.top=Math.max(pad,top)+'px';
   }
+  function hidePopup(){
+    popup.classList.remove('visible');
+  }
   targets.forEach(el=>{
     el.addEventListener('mouseenter',e=>{
       const c=contentFor(el);
@@ -1001,7 +1004,7 @@ a,button,input,textarea{cursor:none}
       place(e.clientX,e.clientY);
     });
     el.addEventListener('mousemove',e=>place(e.clientX,e.clientY));
-    el.addEventListener('mouseleave',()=>popup.classList.remove('visible'));
+    el.addEventListener('mouseleave',hidePopup);
     el.addEventListener('focus',e=>{
       const c=contentFor(el);
       if(!c.text)return;
@@ -1010,8 +1013,12 @@ a,button,input,textarea{cursor:none}
       popup.classList.add('visible');
       place(r.left+r.width/2,r.bottom);
     });
-    el.addEventListener('blur',()=>popup.classList.remove('visible'));
+    el.addEventListener('blur',hidePopup);
   });
+  window.addEventListener('scroll',hidePopup,{passive:true});
+  window.addEventListener('wheel',hidePopup,{passive:true});
+  window.addEventListener('touchmove',hidePopup,{passive:true});
+  window.addEventListener('resize',hidePopup);
 })();
 
 /* â•â•â•â•â•â•â•â•â•â•â• CUSTOM CURSOR â•â•â•â•â•â•â•â•â•â•â• */
