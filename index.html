@@ -182,7 +182,7 @@ a,button,input,textarea{cursor:none}
 [data-theme="light"] .hero-sub{color:var(--text2)}.hero-sub{font-size:clamp(.92rem,1.35vw,1.02rem);color:var(--muted);line-height:1.58;max-width:540px}
 .hero-sub strong{color:var(--text);font-weight:600}
 .hero-tags{display:flex;flex-wrap:wrap;gap:.5rem}
-.hero-tag{padding:.35rem .9rem;border-radius:var(--r-full);border:1px solid var(--border);font-size:.75rem;color:var(--text2);font-weight:500;transition:all var(--t-med);background:var(--glass)}
+.hero-tag{display:inline-flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;padding:.35rem .9rem;border-radius:var(--r-full);border:1px solid var(--border);font-size:.75rem;color:var(--text2);font-weight:500;transition:all var(--t-med);background:var(--glass)}
 .hero-tag:hover{border-color:var(--violet);color:var(--violet);transform:translateY(-2px);background:var(--glass-hover)}
 .hero-proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;max-width:760px}
 .hero-proof-item{border:1px solid var(--border);background:rgba(255,255,255,.045);border-radius:var(--r-sm);padding:.85rem 1rem}
@@ -232,7 +232,7 @@ a,button,input,textarea{cursor:none}
 .card-sub{font-family:var(--font-mono);font-size:.7rem;color:var(--violet);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.5rem}
 .card-desc{color:var(--muted);font-size:.85rem;line-height:1.7;margin-bottom:1rem}
 .card-tags{display:flex;flex-wrap:wrap;gap:.4rem}
-.card-tag{padding:.22rem .6rem;border-radius:var(--r-full);background:rgba(108,92,231,.12);color:var(--violet);font-size:.68rem;font-weight:500}
+.card-tag{display:inline-flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;padding:.22rem .6rem;border-radius:var(--r-full);background:rgba(108,92,231,.12);color:var(--violet);font-size:.68rem;font-weight:500}
 
 /* â”€â”€ Experience cards â”€â”€ */
 .exp-card{display:flex;gap:1.5rem;align-items:flex-start;padding:2rem;border-radius:var(--r-lg);border:1px solid var(--border);background:var(--glass);transition:all var(--t-med)}
@@ -417,6 +417,7 @@ a,button,input,textarea{cursor:none}
 /* â•â•â•â•â•â•â•â•â•â•â• TOUCH TARGETS â•â•â•â•â•â•â•â•â•â•â• */
 @media(pointer:coarse){
   .nav-link,.hero-social,.contact-item,.btn-primary,.btn-outline,.nav-cta,.card-tag{min-height:44px}
+  .card-tag,.hero-tag{align-items:center;justify-content:center}
   .nav-hamburger{min-width:44px;min-height:44px}
   .form-group input,.form-group textarea{font-size:16px}
 }
